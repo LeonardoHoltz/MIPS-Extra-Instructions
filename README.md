@@ -4,8 +4,8 @@ Trabalho feito para a disciplina de Organização de Computadores da Universidad
 **Integrantes:**
 
 - Leonardo Holtz de Oliveira
-- Mario José Kunz Filho
 - Lucas Marques Dorneles
+- Mario José Kunz Filho
 
 **Objetivo:**
 
