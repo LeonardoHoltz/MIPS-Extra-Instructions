@@ -14,3 +14,7 @@ A partir das organizações iniciais da arquitetura MIPS, monociclo, multiciclo 
 **Motivação:**
 
 Para entender como funciona a organização básica de um computador, é necessário entender todas as funções básicas do seu funcionamento, como a decodificação e execução de instruções e as transferencias de dados. Ao modificar a organização e adicionar novas instruções, temos que garantir que todos os procedimentos que o hardware fazia continuem com o funcionamento correto, e que os mesmos procedimentos agora se adequem para novas instruções. Ao se obter sucesso nessa modificação, o entendimento da organização de um computador estará cada vez mais claro.
+
+**Programa Usado**
+
+É usado nesse trabalho o programa Logisim versão 2.7.1
