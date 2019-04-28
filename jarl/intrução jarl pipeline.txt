@@ -1,0 +1,6 @@
+criar funct e opcode que gera jarl
+e add 
+igual ao mono só que com registradores para levar o PC para wb
+funct=9h e opcode=00000 = jarl control =1 
+or no jump e no memread de acordo com jarl control 
+comando igual ao add só que com jarl controler

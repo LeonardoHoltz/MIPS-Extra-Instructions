@@ -1,0 +1,13 @@
+jarl
+pega functi e opcode->1 = controle jarl
+mux para rs para PC
+add 
+alu add com mux com controle jarl
+mux para dado de escrita ser PC+8 com controle jarl 
+teste
+0000 00 00000 t tttt dddd d000 00 funct
+0000 00 00000 00000 00001 000 00   0 0 1 0 0 1
+00000809h
+
+functi controle  0 0 1 0 0 1
+9h
