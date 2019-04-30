@@ -1,0 +1,15 @@
+transição
+opcode + estado 1 ->estado 14
+estado 14 + opcode ->estado 15
+estado 15 -> 00000
+saida
+estado 14-> saida usa PC para dizer que and já que PC não importa para instruções subsequentes 
+estado 14 -> PCSOURCE=11 informa and junto com alusrca=1 e alusrc=10 resto 0,justifica nenhum estado
+usa 11 e resto xx da 00
+ saida 
+estado 14 -> 0 0 0 0 0 0 0 0 0 1 10 00 11 63h
+estado 15 ->  0 0 0 0 0 0 0 0 1 0 00 00 00 80h (aje como estado 4 naus cin r=memtoreg=0)
+ teste
+0011 00ss ssst tttt iiii iiii iiii iiii
+0011 00 00 000 00001 1111 1111 1111 1111
+3001ffffh
