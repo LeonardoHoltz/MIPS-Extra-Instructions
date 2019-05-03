@@ -1,0 +1,71 @@
+BITS DE CONTROLE PARA BRANCH ON GREATER THAN OR EQUAL TO ZERO (de cima para baixo no Logisim)
+
+Ciclo 1:
+PCWriteCon: X
+PCWrite: 1
+IorD: 0
+MemRead: 1
+MemWrite: 0
+MemtoReg: X
+IRWrite: 1
+RegDst: X
+RegWrite: 0
+ALUSrcA: 0
+ALUSrcB: 01
+ALUop: 00
+PCSource: 00
+
+Bits sem os don't cares (X) na mesma ordem: 0101 0010 0001 0000
+Em Hexadecimal: 5210
+
+Ciclo 2:
+PCWriteCon: 0
+PCWrite: 0
+IorD: X
+MemRead: 0
+MemWrite: 0
+MemtoReg: X
+IRWrite: 0
+RegDst: X
+RegWrite: 0
+ALUSrcA: 0
+ALUSrcB: 11
+ALUop: 00
+PCSource: XX
+
+Bits sem os don't cares (X) na mesma ordem: 0000000000110000
+Em Hexadecimal: 0030
+
+Ciclo 3:
+PCWriteCon: 1
+PCWrite: 0
+IorD: X
+MemRead: 0
+MemWrite: 0
+MemtoReg: X
+IRWrite: 0
+RegDst: X
+RegWrite: 0
+ALUSrcA: 1
+ALUSrcB: XX
+ALUop: 11
+PCSource: 01
+
+Bits sem os don't cares (X) na mesma ordem: 1000 0000 0100 1101
+Em Hexadecimal: 804D
+
+Opcode: 000001
+
+Como ALU Op 11 não está codificado para nenhuma instrução (segundo os slides de aula), adotamos essa codificação especificamente para BGEZ.
+
+ULA Control: 000 (AND)
+
+Próximo estado:
+1 -> 10
+
+No 3° estado:
+PCWriteCon = 1
+ALU Op = 11
+|
+v
+Ativam dois multiplexadores novos: O primeiro deles habilita que o dado 10000000000000000000000000000000 passe para a ULA no lugar do registrador RT e do valor imediato. O outro multiplexador é ativado para que o controle da ULA para mande ela fazer um AND. O AND valor com o bit mais significativo em 1 e o restante 0 permite com que se verifique se outro valor é positivo ou não. Se for, o bit zero da ULA é ativado e o Branch funciona normalmente como o BEQ.

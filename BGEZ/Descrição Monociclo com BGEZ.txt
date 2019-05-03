@@ -1,0 +1,30 @@
+BITS DE CONTROLE PARA BRANCH ON GREATER THAN OR EQUAL TO ZERO (de cima para baixo no Logisim)
+RegDst: X
+Jump: 0
+Branch: 1
+MemRead: 0
+MemtoReg: X
+ALUop0: 1
+ALUop1: 1
+MemWrite: 0
+ALUSrc: X
+RegWrite: 0
+
+Bits sem os don't cares (X) na mesma ordem:
+0010011000
+
+Opcode: 000001
+Posição na memória de controle do Logisim: 01
+Valor em Hexadecimal na memória de controle no Logisim: 0x64 (É a ordem inversa dos bits de controle, de baixo para cima no Logisim)
+
+ULA Control: 000 (AND)
+
+Como ALU Op 11 não está codificado para nenhuma instrução (segundo os slides de aula), adotamos essa codificação especificamente para BGEZ.
+
+Branch = 1
+ALU Op 0 = 1
+ALU Op 1 = 1
+|
+v
+Ativam dois multiplexadores novos: O primeiro deles habilita que o dado 10000000000000000000000000000000 passe para a ULA no lugar do registrador RT e do valor imediato. O outro multiplexador é ativado para que o controle da ULA para mande ela fazer um AND. O AND valor com o bit mais significativo em 1 e o restante 0 permite com que se verifique se outro valor é positivo ou não. Se for, o bit zero da ULA é ativado e o Branch funciona normalmente como o BEQ.
+
