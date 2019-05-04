@@ -1,0 +1,26 @@
+MONOCICLO E PIPELINE:
+
+LW R5 0(R6) end(0+R6) = 0x80000023 (posição 0 de data memory)
+   rt   rs
+BGEZ R5, 16 (não é para pular)
+     rs
+
+1°) 100011 00110 00101 0000 0000 0000 0000 (posicao 0 na memoria)
+	    rs	   rt
+2°) 000001 00101 00001 0000 0100 0001 0000 (posicao 4 na memoria)
+
+
+LW R5 0(R6) end(0+R6) = 0x00012345 (posição 0 de data memory)
+   rt   rs
+BGEZ R5, 16 (é para pular)
+     rs
+
+1°) 100011 00110 00101 0000 0000 0000 0000 (0x8cc50000)
+	    rs	   rt
+2°) 000001 00101 00001 0000 0100 0001 0000 (0x04a10810)
+
+MULTICICLO:
+
+1°) 100011 00110 00101 0000 0000 0001 0000 (posicao 0 na memoria) (0x8cc50010)
+	    rs	   rt
+2°) 000001 00101 00001 0000 0100 0001 0000 (posicao 4 na memoria) (0x04a10810)
