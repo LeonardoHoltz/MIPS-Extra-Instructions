@@ -1,0 +1,72 @@
+Logica multiciclo
+BRANCH IF ZERO OR GREATER THAN
+PROXIMO ESTADO
+000001 0001->1010 
+000001 1010->0000
+
+Geração de Saida
+1010->  1 0 0 0 0 0 0 0 0 1 00 11 01
+ALUOP=11 
+804d
+teste 
+0000 0100 0000 0001 0000 0000 0000 0100
+MULT
+MULTIPLICAÇÃO EM PARALELO COM ALU,multiplier grava
+estado 11 -> alusrcA=1 AlusrcB = 00 Aluop=10 multiplier=1
+0 0 X 0 0 X 0 X 0 1 00 10 XX
+novo controle multiplier em tudo vai ser 1
+a um novo rom no multiciclo para o opcode
+0110
+0 1 1 0 0 1 seleciona nessa função não gravar 
+mux na maquina de estados para garantir que com funct de aritimetico vai para 
+00000 quando é op aritimetico e func de multiplicação
+estado 0110 com funct 011001->0000
+
+
+---------------------------------------------------------------------------------------
+JARL
+NOVO CONTROLE JARL
+ADICIONA MUX PARA PC + 4 PARA GRAVAR,POIS PC JÁ TA + 4
+FUNCT
+transição
+001001 0110 96h-> 1
+001001 0110 96h-> 1100 c
+1100 c 12d -> 1101 d
+96h
+saida
+estado 12-> 0 0 0 0 0 0 0 0 0 1 00 00 00  JARL= 0(ALU OP VAI SER 00 PRA ADD DADO XXXXXX FUNCT)
+estado 13-> 0 1 0 0 0 0 0 1 1 0 00 00 01 ( 0 PCWRITE=1 X 0 0 0 0 1 1 X XX XX PCSOURCE=01 JARL = 1 )
+TESTE:
+ 0000 00ss ssst tttt dddd d000 0000 1001
+ 0000 00  00000 00000 00001 00000 001001
+809h
+80
+-------------------------------------------------------------------------------------
+bloco de controle 
+se divide no 1 tem um bloco de escrita 
+memory andress
+estado 6 executa soma 0000 com rd -> vai para estado 12 com funct
+funct jarl+ estado 6 -> estado 12
+estado 12 ->000000
+mux muda de acordo com necessidade do estado 12 e mux op code proximo 00000
+estado 12 -> escrita  de PC+8 no rs com novo memToReg e escrita no PC de PC mais 8
+estado 12 ->0 PCWRITE = 1 X 0 0 0 0 1 1 X XX XX 01
+CONTROLE PARA PC+8 NO MEMTOREG2  = 1
+000000 + estado 12 -> MEMTOREG2  = 1
+
+addi 
+opcode depois 
+estado 1 +opcode addi-> estado 13 
+estado 13+opcode addi -> estado 14
+estado 14 -> estado 0
+saida estado 13-> mux controle para estado 13 para executar na alu and =1 ,resto 0
+igual a estado 3 ,mas AlusrcB =10
+saida estado 14 -> memtoReg=0 e RegDst=0 WRITEREG=1 resto 0
+
+
+
+
+
+
+
+
