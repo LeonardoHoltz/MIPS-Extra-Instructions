@@ -1,0 +1,69 @@
+BITS DE CONTROLE PARA MULT (de cima para baixo no Logisim) (bits mais significativos para menos)
+
+
+CICLO 1:
+SpecialRegWrite = 0
+PCWriteCon: 0
+PCWrite: 1
+IorD: 0
+MemRead: 1
+MemWrite: 0
+MemtoReg: X
+IRWrite: 1
+RegDst: X
+RegWrite: 0
+ALUSrcA: 0
+ALUSrcB: 01
+ALUop: 00
+PCSource: 00
+
+CICLO 2:
+SpecialRegWrite = 0
+PCWriteCon: 0
+PCWrite: 0
+IorD: X
+MemRead: 0
+MemWrite: 0
+MemtoReg: X
+IRWrite: 0
+RegDst: X
+RegWrite: 0
+ALUSrcA: 0
+ALUSrcB: 11
+ALUop: 00
+PCSource: XX
+
+CICLO 3:  (NOVO ESTADO)
+SpecialRegWrite = 1
+PCWriteCon: 0
+PCWrite: 0
+IorD: X
+MemRead: 0
+MemWrite: 0
+MemtoReg: X
+IRWrite: 0
+RegDst: X
+RegWrite: 0
+ALUSrcA: 1
+ALUSrcB: 00
+ALUop: 00
+PCSource: 00
+
+
+
+NOVA TRANSICAO
+1 -> 10
+Condicao: Operacao e MULT (Funct == 011000, OPCODE == 000000)
+
+NOVA TRANSICAO		(Nao ha necessidade de alteracao na memoria, default e pra 0)
+10->0
+
+
+
+
+LOGICA
+Cria novo estado ao inves de usar os estados do R-Type pois R-Type precisam do estagio de writeback, enquanto o writeback do MULT pode ser feito no terceiro ciclo ao inves de no quarto (Nao precisa acessar um banco de registradores, mesmo custo de guardar no ALUOut)
+
+Cria novo bit de controle, SpecialRegWrite, pois ao contrario, a logica necessaria causaria que quando a operacao fosse MULT, cada ciclo antes do terceiro iria mudar o valor de HI e LO com lixo de memoria 
+
+Usa funcao isMult? para determinar se a operacao e mult. Funcao sera MULT se o OPCODE for 000000 e a Funct for 011000. Para nao necessitar reconfiguracao da memoria de proximo estado, fazemos o bit de isMult? ligar apenas no estado em que ele faria alguma diferenca, que e no estado um. Sem isso, teriamos um bug que se a funcao fosse MULT, o programa diria que o proximo estado esta localizado em um lugar completamente diferente da memoria e causaria erros.

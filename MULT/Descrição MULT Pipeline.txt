@@ -1,0 +1,19 @@
+BITS DE CONTROLE PARA MULT (de cima para baixo no Logisim)(bit mais significativo para menos)
+
+SpecialRegWrite: 1
+Jump: 0
+RegDst: X
+ALUop: XX
+ALUSrc: 0
+Branch: 0
+MemRead: 0
+MemWrite: 0
+MemToReg: X
+RegWrite: 0
+
+
+
+
+LOGICA
+
+isMult? igual ao do monociclo. Na quinta etapa bota o valor da multiplicacao nos registradores especiais.

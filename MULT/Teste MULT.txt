@@ -1,0 +1,19 @@
+REQUERIMENTOS:
+
+Setar registrador 1 ($1) com o valor '7fa23fbc' e registrador 2 ($2) com 'ff2346d'
+
+
+TESTE:
+
+Por na memoria o valor 00220018
+
+
+000000 00001 00010 0000000000 011000	-> 00220018
+        rs    rt   rt zerado   funct
+
+
+VALOR ESPERADO:
+
+HI = '07F3433F'
+
+LO = '90BF530C'

@@ -1,0 +1,29 @@
+BITS DE CONTROLE PARA MULT (De cima para baixo no logisim, bit mais significativo para menos)
+
+SpecialRegWrite: 1
+RegDst: X
+Jump: 0
+Branch: 0
+MemRead: 0
+MemtoReg: X
+ALUop0: X
+ALUop1: X
+MemWrite: 0
+ALUSrc: 0
+RegWrite: 0
+
+
+
+
+
+
+
+
+LOGICA
+
+MULT e diferente de outros R-Type pois precisa escrever em um registrador especial enao deve escrever nada no banco de registradores. MULT tem OPCODE 000000 porem, igual aos outros R-Types, mesmo que precise acender outros bits de controle. Para diferenciar MULT de outros R-Type, uma funcao auxiliar isMult? e usada, que liga um bit quando o OPCODE e 000000 e a Funct e 011000 (funct do mult). 
+
+Esse bit adicional e juntado com o OPCode e posto no bit mais significativo (para garantir funcionamento de todas as outars instrucoes sem precisar mudar a memoria). Com a ajuda do bit adicional, e possivel diferenciar na memoria as operacoes do tipo R e o MULT.
+
+NOVO BIT DE CONTROLE
+E necessario tambem um bit especial de controle, SpecialRegWrite, para apenas escrever nos registradores especiais quando a instrucao for mult, pois se nao ficaria escrevendo lixo nos registradores especiais.
