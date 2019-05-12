@@ -1,5 +1,11 @@
 MONOCICLO E PIPELINE:
 
+1°) Colocar 0x8cc50000 na posição 0 da memória de instruções.
+2°) Colocar 0x04a10810 na posição 1 (posição 5 no pipeline) da memória de instruções.
+3°) Colocar 0x80000023 na posição 0 da memória de dados caso não queira pular.
+4°) Colocar 0x00012345 na posição 0 da memória de dados caso queira pular.
+
+=================================================================================
 LW R5 0(R6) end(0+R6) = 0x80000023 (posição 0 de data memory)
    rt   rs
 BGEZ R5, 16 (não é para pular)
@@ -19,7 +25,14 @@ BGEZ R5, 16 (é para pular)
 	    rs	   rt
 2°) 000001 00101 00001 0000 0100 0001 0000 (0x04a10810)
 
+================================================================================
+
 MULTICICLO:
+
+1°) Colocar 0x8cc50000 na posição 0 da memória.
+2°) Colocar 0x04a10810 na posição 1 da memória.
+3°) Colocar 0x80000023 na posição 10 da memória caso não queira pular (pode escolher qualquer posição na verdade, desde que não seja comprometa a parte das instruções, ou seja, nas primeiras posições).
+4°) Colocar 0x00012345 na posição 10 da memória caso queira pular (idem aqui).
 
 1°) 100011 00110 00101 0000 0000 0001 0000 (posicao 0 na memoria) (0x8cc50010)
 	    rs	   rt
